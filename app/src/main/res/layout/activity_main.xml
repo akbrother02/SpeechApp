@@ -1,47 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="@drawable/login_background_dark"
+    android:gravity="center_horizontal|bottom"
+    android:orientation="vertical"
+    android:padding="20dp">
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/editText"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:editable="false"
-        android:hint="@string/text_hint"
-        android:maxLines="5"
-        android:padding="20dp"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-        android:textColor="@color/colorPrimaryDark"
-        android:textColorHint="@color/colorAccent"
-        tools:ignore="Deprecated" />
+        android:layout_weight="0"
+        android:background="@drawable/login_media_gradient_background"
+        android:orientation="vertical"
+        android:padding="20dp">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/btSpeech"
-        android:layout_alignLeft="@+id/editText"
-        android:layout_alignStart="@+id/editText"
-        android:gravity="center"
-        android:padding="5dp"
-        android:text="@string/btn_info"
-        android:textColor="@color/colorAccent"
-        android:textSize="12sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
 
-    <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/btSpeech"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/btn_background" />
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:hint="@string/text_hint"
+                android:inputType="none"
+                android:maxLines="5"
+                android:padding="10dp"
+                android:textColor="@color/white"
+                android:textColorHint="@android:color/white" />
 
-</RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/white" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btSpeech"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_background" />
+
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btNxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="25dp"
+                android:layout_marginRight="40dp"
+                android:background="@drawable/ic_arrow_forward" />
+
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -28,6 +28,8 @@ class MainActivity : AppCompatActivity() {
 
         startSpeechToText()
 
+
+
     }
 
     private fun startSpeechToText() {
@@ -62,6 +64,12 @@ class MainActivity : AppCompatActivity() {
 
             override fun onEvent(i: Int, bundle: Bundle) {}
         })
+
+        btNxt.setOnClickListener {
+            val intent = Intent(this,ResultActivity::class.java)
+            intent.putExtra("text",editText.text.toString())
+            startActivity(intent)
+        }
 
         btSpeech.setOnTouchListener(View.OnTouchListener { view, motionEvent ->
             when (motionEvent.action) {
