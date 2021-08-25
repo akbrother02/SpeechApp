@@ -3,7 +3,6 @@ package com.example.assignment_speech
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.media.audiofx.BassBoost
 import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -24,15 +23,18 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        var dbCount=intent.getStringExtra("dataDB")
+        var username=intent.getStringExtra("username")
+
         checkPermission()
 
-        startSpeechToText()
+        startSpeechToText(dbCount,username)
 
 
 
     }
 
-    private fun startSpeechToText() {
+    private fun startSpeechToText(dbCount: String?, username: String?) {
         val editText = findViewById<TextView>(R.id.editText)
 
         val speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this)
@@ -68,7 +70,10 @@ class MainActivity : AppCompatActivity() {
         btNxt.setOnClickListener {
             val intent = Intent(this,ResultActivity::class.java)
             intent.putExtra("text",editText.text.toString())
+            intent.putExtra("DbString",dbCount);
+            intent.putExtra("name",username);
             startActivity(intent)
+            finish()
         }
 
         btSpeech.setOnTouchListener(View.OnTouchListener { view, motionEvent ->

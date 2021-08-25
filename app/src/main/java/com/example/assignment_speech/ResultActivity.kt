@@ -1,12 +1,12 @@
 package com.example.assignment_speech
 
-import android.graphics.Color
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.TypedValue
-import android.view.ViewGroup
-import android.widget.RelativeLayout
 import android.widget.TextView
+import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.activity_result.*
+import kotlinx.android.synthetic.main.activity_signup.*
 import java.util.*
 
 class ResultActivity : AppCompatActivity() {
@@ -15,15 +15,22 @@ class ResultActivity : AppCompatActivity() {
         setContentView(R.layout.activity_result)
 
         val data=intent.getStringExtra("text")
-        count_freq(data!!)
+        val dbCount=intent.getStringExtra("DbString")
+        val username=intent.getStringExtra("name")
+        count_freq(data!!,dbCount,username)
 
+        logout.setOnClickListener{
+            var intent= Intent(this,LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
     }
 
 
-    fun count_freq(str: String) {
+    fun count_freq(str: String, dbCount: String?, username: String?) {
         val resultText = findViewById<TextView>(R.id.text)
-        var result=""
+        var result=dbCount
         val mp: MutableMap<String, Int> = TreeMap()
         // Splitting to find the word
         val arr = str.split(" ").toTypedArray()
@@ -40,5 +47,12 @@ class ResultActivity : AppCompatActivity() {
             result=result+"\n"+key + " - " + value
         }
         resultText.setText(result)
+        saveDatatoDatabase(result,username)
+    }
+
+    private fun saveDatatoDatabase(result: String?, username: String?) {
+         var rootNode= FirebaseDatabase.getInstance()
+        var  reference=rootNode.getReference("Users")
+        reference.child(username!!).child("stringCount").setValue(result)
     }
 }

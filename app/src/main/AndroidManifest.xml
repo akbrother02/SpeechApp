@@ -12,10 +12,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Assignment_Speech">
         <activity
-            android:name=".ResultActivity"
+            android:name=".SignupActivity"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ResultActivity"
+            android:exported="true" />
+        <activity
+            android:name=".LoginActivity"
+            android:launchMode="singleInstance"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
